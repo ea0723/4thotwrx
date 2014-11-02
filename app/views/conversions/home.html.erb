@@ -1,0 +1,50 @@
+<h1>Intergalactic Planetary Credits Converter</h1>
+
+<div class="form">
+	<%= simple_form_for @conversions do |f| %>
+  			<%= f.input :convert_me, :required => true, :placeholder => "Convert Some Stuff :)" %>
+  			<%= f.submit "Convert", :class => "button", :type => "pill" %>
+  			<%= link_to "cancel", "#", :style => "margin-left: 25px;" %>
+  		</div>
+  <% end %>
+	
+</div>
+
+<% gets(:convert_me).chomp.split(" ") %>
+
+<% :credits == 0 %>
+
+<% def my_error
+		 "I have no idea what you are talking about"
+	 end %>
+
+<% :convert_me.each do |i|
+	case i
+		when !("glob" || "glob prok" || "prok" || "glob pish" || "pish" || "pish tegj" || "tegj" || "silver" || "iron" || "gold") then
+			@total = 0
+			raise(my_error)
+		when "glob" then @total += 1
+		when 4.times("glob") then
+			puts(my_error) && :credits == nil
+		when "glob prok" then :credits += 4
+		when "prok" then :credits += 5
+		when 2.times("prok") then
+			puts(my_error) && :credits == nil
+		when "glob pish" then :credits += 9
+		when "pish" then :credits += 10
+		when 4.times("pish") then
+			puts(my_error) && :credits == nil
+		when "pish tegj" then :credits += 40
+		when "tegj" then :credits += 50
+		when 2.times("tegj") then
+			puts(my_error) && :credits == nil
+		when "silver" then :credits *= 17
+		when "iron" then :credits *= 195.5
+		when "gold" then :credits *= 14450
+		else
+			raise(my_error)
+	end
+end %>
+
+<h2> Your Converted Credits Equal: </h2>
+<%= puts(:credits) %> 

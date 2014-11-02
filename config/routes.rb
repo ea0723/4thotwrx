@@ -1,6 +1,7 @@
 Workspace::Application.routes.draw do
   get "conversions/home"
   get "conversions/help"
+  # get "conversions/new"
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,13 +1,13 @@
 Workspace::Application.routes.draw do
-  get "conversions/home"
-  get "conversions/help"
-  # get "conversions/new"
+  resources :conversions
+  get "conversions/index"
+
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'conversions#home'
+  root 'conversions#index'
   
 
   # Example of regular route:

@@ -1,14 +1,25 @@
 <div style="margin: 50px auto; text-align: center;">
-	<p id="flash-notice"><%= notice %></p>
-	<h1 style="text-align: center; font-size: 2em; color: #3366cc"><a style="text-decoration: none" href=<%= root_path %> > Merchant's Guide to the Galaxy </br>Intergalactic Planetary Credits Converter</a></h1>
+	<h1 style="text-align: center; font-size: 2em; color: #3366cc"><a style="text-decoration: none" href=<%= root_path %>> Merchant's Guide to the Galaxy </br>Intergalactic Planetary Credits Converter</a></h1>
 	<h3 style="text-align: center; margin: 0 auto 30px; color: #b80030">Leave your abacus, but definitely don't forget your towel!</h3>
 
+	<p id="flash-notice"><%= notice %></p>
 
-	<%= render 'form' %>
+	<h2 style="margin: 20px auto">Your Conversion</h2>
+
+	<h2>
+		<strong><%= @conversion.convert_me %> is = to <%= @conversion.credits %> credits</strong>
+
+	</h2>
+
+
+	<button style="font-size: 1.5em; margin-bottom: 50px"><%= link_to 'New Conversion', new_conversion_path %></button>
+
+	<hr>
 </div>
 
-<div style = "color: grey; font-size: .75em; text-align: center">
+<div style="color: grey; font-size: .75em; text-align: center">
 	<h4>Test Input</h4>
+
 	<p>glob is I </br>
 		prok is V</br>
 		pish is X</br>

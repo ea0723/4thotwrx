@@ -1,0 +1,26 @@
+
+<div style="margin: 50px auto; font-size: 1.10em">
+	<%= form_for(@conversion) do |f| %>
+		<% if @conversion.errors.any? %>
+			<div id="error_explanation">
+				<h3 style="color: #b80030"><%= pluralize(@conversion.errors.count, "error") %> prohibited this conversion from being saved:</h3>
+
+				<ul>
+				<% @conversion.errors.full_messages.each do |message| %>
+					<li><%= message %></li>
+				<% end %>
+				</ul>
+			</div>
+		<% end %>
+
+		<div class="field" style="margin: 10px auto; font-size: 1.1em;">
+			<p><%= f.label :convert_me %></p>
+			<p><%= f.text_field :convert_me %></p>
+		</div>
+
+		<div class="button">
+			<%= f.submit ('Convert!'), :style => 'font-size: 48px' %>
+		</div>
+	<% end %>
+</div>
+<hr>

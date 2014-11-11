@@ -1,9 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  convert_me: MyString
-  credits: 1.5
+glob:
+  convert_me: glob is I
+  credits:
 
-two:
-  convert_me: MyString
-  credits: 1.5
+prok:
+  convert_me: prok is V
+  credits:
+
+pish:
+  convert_me: pish is X
+  credits:
+
+tegj:
+  convert_me: tegj is L
+  credits:

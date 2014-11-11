@@ -52,16 +52,15 @@ class Conversion < ActiveRecord::Base
   end
 
 
-	def simplify_for_conversion # next, remove any leading or tailing strings
-      self.convert_me.gsub!(/how many credits is\s/i, '')
-      self.convert_me.gsub!(/how much is\s/i, '')
-      self.convert_me.gsub!(/\sis \d+ credits/i, '')
-      if self.convert_me.match(/^(glob is I)|(prok is V)|(pish is X)|(tegj is L)/i)
-	      self.convert_me.gsub!(/\sis \w$/i, '')
-      end
-      puts("here's the simplified string after any gsub ready to split --> #{convert_me}")
+	def simplify_for_conversion 
+    self.convert_me.gsub!(/how many credits is\s/i, '')
+    self.convert_me.gsub!(/how much is\s/i, '')
+    self.convert_me.gsub!(/\sis \d+ credits/i, '')
+    if self.convert_me.match(/^(glob is I)|(prok is V)|(pish is X)|(tegj is L)/i)
+      self.convert_me.gsub!(/\sis \w$/i, '')
+    end
     @units = self.convert_me.strip.split(" ")
-     puts("Here's the array after simplify_for_conversion --> #{@units}")
+
   end
 
 
@@ -75,7 +74,7 @@ class Conversion < ActiveRecord::Base
       puts("this is the metals --> #{@metals}")
       @joined = @units.join('')
       puts("this is the joined array for final calculation --> #{@joined}")
-    end
+  end
 
 
   def calculate_it

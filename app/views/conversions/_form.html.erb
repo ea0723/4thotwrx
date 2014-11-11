@@ -1,26 +1,33 @@
 
-<div style="margin: 50px auto; font-size: 1.10em">
+<div style="margin: 50px auto; font-size: 1.10em; text-align: center">
 	<%= form_for(@conversion) do |f| %>
 		<% if @conversion.errors.any? %>
 			<div id="error_explanation">
-				<h3 style="color: #b80030"><%= pluralize(@conversion.errors.count, "error") %> prohibited this conversion from being saved:</h3>
-
 				<ul>
-				<% @conversion.errors.full_messages.each do |message| %>
-					<li><%= message %></li>
-				<% end %>
+					<li style="color: #b80030; list-style-type: none"><%= pluralize(@conversion.errors.count, "error") %> prohibited this conversion from being saved:</li>
 				</ul>
+				
+				<% @conversion.errors.full_messages.each do |message| %>
+					<h3 style="color: #b80030"><%= message %></h3>
+				<% end %>
+				
 			</div>
 		<% end %>
 
-		<div class="field" style="margin: 10px auto; font-size: 1.1em;">
+		<div class="field" style="margin: 10px auto; font-size: 1.15em;">
 			<p><%= f.label :convert_me %></p>
-			<p><%= f.text_field :convert_me, :autofocus => true %></p>
+			<p><%= f.text_field :convert_me, autofocus: true, id: "destination", style: 'font-size: 1.1em;' %></p>
 		</div>
 
-		<div class="button">
-			<%= f.submit ('Convert!'), :style => 'font-size: 48px' %>
+		<div style="font-size: 2em;">
+			<%= f.submit ('Convert!'), style: 'font-size: 3em; width: 100px; height: 50px; background-color: darkgrey; color: white; text-decoration: none' %>
 		</div>
 	<% end %>
 </div>
-<hr>
+
+<div style="text-align: center;">
+
+<hr style="width: 50%; border-bottom-color: #b80030; margin: 50px auto 25px ">
+</div>
+
+<div style="color: grey; font-size: .95em; text-align: center" id="">

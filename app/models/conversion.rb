@@ -9,8 +9,7 @@ class Conversion < ActiveRecord::Base
   @metals = 1
 
   VALID_MATCH_WORDS = ['glob', 'prok', 'pish', 'tegj', 'iron', 'silver', 'gold']
-  MATCH_UNITS = { 'glob' => 'I', 'prok' => 'V', 'pish' => 'X', 'tegj' => 'L', 'gold' => 14450, 'iron' => 195.50, 'silver' => 17}
-  # ROMAN_NUMERAL_VALUES = { 'L' => 50, 'XL' => 40, 'X' => 10, 'IX' => 9, 'V' => 5, 'IV' => 4, 'I' => 1 }
+  MATCH_UNITS = { 'tegj' => 'L', 'pish' => 'X', 'prok' => 'V', 'glob' => 'I', 'gold' => 14450, 'iron' => 195.50, 'silver' => 17}
 
   def question_how_many(question="")
 	  extract_invalid_words($1) if question.match(/^how many credits is (.+?)$/i)
@@ -37,17 +36,21 @@ class Conversion < ActiveRecord::Base
 
   def input_valid
     matched_words = question_how_many(self.convert_me) || question_how_much(self.convert_me) || unit_is_value(self.convert_me) || units_plus_credits(self.convert_me) || units_only(self.convert_me)
+
+    logger.info "********** input_valid response ---> matched_words: #{matched_words} **********"
+
     errors.add(:convert_me, "You have offended my babel fish, I have no idea what you're talking about") if matched_words.nil? || matched_words == []
   end
-
 
   def clean_it_up
     self.convert_me.downcase!
     self.convert_me.strip!
     if self.convert_me.match(/\?$/)
       self.convert_me.chop!
+      logger.info "here's the string after clean_it_up --> #{convert_me}"
     end
   end
+
 
 	def simplify_for_conversion # next, remove any leading or tailing strings
       self.convert_me.gsub!(/how many credits is\s/i, '')
@@ -62,15 +65,12 @@ class Conversion < ActiveRecord::Base
   end
 
 
-# Step 3) strip any leading words if they got through step 2. Map the units to Roman Numerals or integer for ease of assessment. Break out the metals. Convert to integers
   def map_it
     if @units[1] == 'is'
 	    @units.pop(2)
       puts("here are the units to map --> #{@units}")
     end
-    # unless self.credits == "True"
       @units.map! { |a| MATCH_UNITS[a] }
-      # separate out the "metals" for multiplication - ensure that those calculations without metals works
       @units.length <= 1 || @units[-1].is_a?(String) || @units.empty? ? @metals = 1 : @metals = @units.pop
       puts("this is the metals --> #{@metals}")
       @joined = @units.join('')
@@ -82,7 +82,6 @@ class Conversion < ActiveRecord::Base
     total = 0
     add = 0
       puts("this is the starting total --> #{total}")
-  # convert units from roman numerals to integers & multiply by metals to get final credit amount. Raise exception if invalid numeral pair
       until @joined.empty? do
         case
           when @joined.start_with?('L') then add += 50; len = 1
@@ -97,10 +96,10 @@ class Conversion < ActiveRecord::Base
         end
         @joined.slice!(0, len)
       end
-        puts("i have added a value --> #{add}")
+      puts("i have added a value --> #{add}")
       total += add
       total *= @metals
-        puts("the total is now --> #{total}")
+      puts("the total is now --> #{total}")
       self.credits = total
   end
 

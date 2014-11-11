@@ -1,14 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Intergalactic Currency Converter</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
+  <title>Galaxy Currency Converter</title>
 </head>
 <body>
+<div style="margin: 50px auto; text-align: center;">
+	<h1 style="text-align: center; font-size: 2em; color: darkblue;">
+		<a style="color: darkblue; text-decoration: none" href=<%= root_path %>> Merchant's Guide to the Galaxy </br>Intergalactic Planetary Credits Converter</a></h1>
+	<h3 style="text-align: center; margin: 0 auto 30px; color: #b80030">Leave the abacus, and grab your towel!</h3>
+</div>
+	<p class="alert"><%= alert %></p>
 
-<%= yield %>
+
+	<%= yield %>
+
+<div style="text-align: center;">
+<button style="font-size: 1.5em; margin-top: 20px; background-color: darkgray;"><%= link_to 'New Conversion', new_conversion_path, style: 'text-decoration: none; color: white' %></button>
+
+<hr style="width: 50%; border-bottom-color: #b80030; margin: 50px auto 25px ">
+</div>
+
+<div style="color: grey; font-size: .95em; text-align: center" id="">
+	<h3>Test Input</h3>
+
+
+	glob is I<br>
+	prok is V<br>
+	pish is X<br>
+	tegj is L<br>
+	glob glob Silver is 34 Credits<br>
+	glob prok Gold is 57800 Credits<br>
+	pish pish Iron is 3910 Credits<br>
+	how much is pish tegj glob glob ?<br>
+	how many Credits is glob prok Silver ?<br>
+	how many Credits is glob prok Gold ?<br>
+	how many Credits is glob prok Iron ?<br>
+	how much wood could a woodchuck chuck if a woodchuck could chuck wood ?
+</div>
 
 </body>
 </html>

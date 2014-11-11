@@ -39,7 +39,8 @@ class Conversion < ActiveRecord::Base
 
     logger.info "********** input_valid response ---> matched_words: #{matched_words} **********"
 
-    errors.add(:convert_me, "You have offended my babel fish, I have no idea what you're talking about") if matched_words.nil? || matched_words == []
+    errors.add(:convert_me, "I have no idea what you are talking about") && errors.add(:convert_me, "(but The Answer to The Question is, ultimately, 42)") if matched_words.nil? || matched_words == []
+    
   end
 
   def clean_it_up

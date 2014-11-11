@@ -15,19 +15,18 @@
 		<% end %>
 
 		<div class="field" style="margin: 10px auto; font-size: 1.15em;">
-			<p><%= f.label :convert_me %></p>
+			<p><%= f.label :convert_me, 'Convert Me' %></p>
 			<p><%= f.text_field :convert_me, autofocus: true, id: "destination", style: 'font-size: 1.1em;' %></p>
 		</div>
 
-		<div style="font-size: 2em;">
-			<%= f.submit ('Convert!'), style: 'font-size: 3em; width: 100px; height: 50px; background-color: darkgrey; color: white; text-decoration: none' %>
+		<div style="">
+			<%= f.submit ('Convert It!'), style: 'font-size: 1.5em; width: 200px; height: 35px; background-color: green; color: white; text-decoration: none' %>
 		</div>
 	<% end %>
 </div>
 
 <div style="text-align: center;">
-
-<hr style="width: 50%; border-bottom-color: #b80030; margin: 50px auto 25px ">
+	<%= link_to 'Clear Field', new_conversion_path, style: 'font-size: 1.5em; text-decoration: none; color: #b80030' %>
 </div>
 
 <div style="color: grey; font-size: .95em; text-align: center" id="">

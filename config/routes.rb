@@ -1,13 +1,14 @@
 Workspace::Application.routes.draw do
   resources :conversions
   get "conversions/index"
+  get "conversions/new"
 
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'conversions#index'
+  root 'conversions#new'
   
 
   # Example of regular route:
